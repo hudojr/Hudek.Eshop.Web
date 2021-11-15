@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Hudek.Eshop.Web.Migrations.MySql
+namespace Hudek.Eshop.Web.Migrations
 {
     [DbContext(typeof(EshopDbContext))]
-    [Migration("20211108073625_Product")]
-    partial class Product
+    [Migration("20211115174737_MySql_1.0.0")]
+    partial class MySql_100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
