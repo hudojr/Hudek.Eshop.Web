@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hudek.Eshop.Web.Migrations
 {
     [DbContext(typeof(EshopDbContext))]
-    [Migration("20211115174737_MySql_1.0.0")]
-    partial class MySql_100
+    [Migration("20211119095609_MySQL_1.0.0")]
+    partial class MySQL_100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,11 @@ namespace Hudek.Eshop.Web.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
+
+                    b.Property<string>("ImageSource450x300")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()

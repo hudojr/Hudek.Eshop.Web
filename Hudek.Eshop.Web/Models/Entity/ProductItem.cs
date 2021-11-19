@@ -21,6 +21,13 @@ namespace Hudek.Eshop.Web.Models.Entity
         public double Price { get; set; }
         public string Description { get; set; }
 
+        [NotMapped]
+        [FileContentValidation("image")]
+        public IFormFile Image { get; set; }
 
+        [StringLength(255)]
+        [Required]
+        public string ImageSource450x300 { get; set; }
+       
     }
 }

@@ -40,22 +40,26 @@ namespace Hudek.Eshop.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductItem productItem)
         {
-            if (String.IsNullOrEmpty(productItem.Name) == false)
+            FileUpload fileUpload = new FileUpload(env.WebRootPath, "img/Products", "image");
+
+            if (fileUpload.CheckFileContent(productItem.Image)
+                   && fileUpload.CheckFileLength(productItem.Image))
             {
-                /*if (DatabaseFake.ProductItems != null && DatabaseFake.ProductItems.Count > 0)
+                productItem.ImageSource450x300 = await fileUpload.FileUploadAsync(productItem.Image);
+
+                ModelState.Clear();
+                TryValidateModel(productItem);
+                if (ModelState.IsValid)
                 {
-                    productItem.ID = DatabaseFake.ProductItems.Last().ID + 1;
-                }*/
-                eshopDbContext.ProductItems.Add(productItem);
+                    eshopDbContext.ProductItems.Add(productItem);
 
-                await eshopDbContext.SaveChangesAsync();
+                    await eshopDbContext.SaveChangesAsync();
 
-                return RedirectToAction(nameof(ProductController.Select));
+                    return RedirectToAction(nameof(ProductController.Select));
+                }
             }
-            else
-            {
-                return View(productItem);
-            }
+
+            return View(productItem);
         }
 
         public IActionResult Edit(int ID)
@@ -76,10 +80,30 @@ namespace Hudek.Eshop.Web.Areas.Admin.Controllers
 
             if (productItem != null)
             {
-                if (String.IsNullOrEmpty(productItem.Name) == false
-                   && String.IsNullOrEmpty(productItem.Description) == false)
-                {
 
+                if (pItem.Image != null)
+                {
+                    FileUpload fileUpload = new FileUpload(env.WebRootPath, "img/Products", "image");
+
+                    if (fileUpload.CheckFileContent(pItem.Image)
+                       && fileUpload.CheckFileLength(pItem.Image))
+                    {
+
+                        pItem.ImageSource450x300 = await fileUpload.FileUploadAsync(pItem.Image);
+                        productItem.ImageSource450x300 = pItem.ImageSource450x300;
+
+                    }
+                }
+                else
+                {
+                    pItem.ImageSource450x300 = "-";
+                }
+
+
+                ModelState.Clear();
+                TryValidateModel(pItem);
+                if (ModelState.IsValid)
+                {
                     productItem.Name = pItem.Name;
                     productItem.Description = pItem.Description;
                     productItem.Price = pItem.Price;
@@ -88,12 +112,8 @@ namespace Hudek.Eshop.Web.Areas.Admin.Controllers
 
                     return RedirectToAction(nameof(ProductController.Select));
                 }
-                else
-                {
-                    return View(productItem);
-                }
             }
-            return NotFound();
+            return View(productItem);
         }
 
         public async Task<IActionResult> Delete(int ID)
