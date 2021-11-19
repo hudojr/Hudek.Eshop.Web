@@ -42,10 +42,12 @@ namespace Hudek.Eshop.Web.Areas.Admin.Controllers
         {
             FileUpload fileUpload = new FileUpload(env.WebRootPath, "img/Products", "image");
 
-            if (fileUpload.CheckFileContent(productItem.Image)
-                   && fileUpload.CheckFileLength(productItem.Image))
+            if ((fileUpload.CheckFileContent(productItem.Image)
+               && fileUpload.CheckFileLength(productItem.Image)) && (fileUpload.CheckFileContent(productItem.Image2)
+               && fileUpload.CheckFileLength(productItem.Image2)))
             {
                 productItem.ImageSource450x300 = await fileUpload.FileUploadAsync(productItem.Image);
+                productItem.ImageSource600x700 = await fileUpload.FileUploadAsync(productItem.Image2);
 
                 ModelState.Clear();
                 TryValidateModel(productItem);
@@ -81,22 +83,25 @@ namespace Hudek.Eshop.Web.Areas.Admin.Controllers
             if (productItem != null)
             {
 
-                if (pItem.Image != null)
+                if (pItem.Image != null && pItem.Image2 != null)
                 {
                     FileUpload fileUpload = new FileUpload(env.WebRootPath, "img/Products", "image");
 
-                    if (fileUpload.CheckFileContent(pItem.Image)
-                       && fileUpload.CheckFileLength(pItem.Image))
+                    if ((fileUpload.CheckFileContent(pItem.Image)
+                       && fileUpload.CheckFileLength(pItem.Image)) || (fileUpload.CheckFileContent(pItem.Image2)
+                       && fileUpload.CheckFileLength(pItem.Image2)))
                     {
 
                         pItem.ImageSource450x300 = await fileUpload.FileUploadAsync(pItem.Image);
                         productItem.ImageSource450x300 = pItem.ImageSource450x300;
-
+                        pItem.ImageSource600x700 = await fileUpload.FileUploadAsync(pItem.Image2);
+                        productItem.ImageSource600x700 = pItem.ImageSource600x700;
                     }
                 }
                 else
                 {
                     pItem.ImageSource450x300 = "-";
+                    pItem.ImageSource600x700 = "-";
                 }
 
 
