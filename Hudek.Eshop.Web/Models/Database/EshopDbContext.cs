@@ -1,4 +1,6 @@
 ﻿using Hudek.Eshop.Web.Models.Entity;
+using Hudek.Eshop.Web.Models.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Hudek.Eshop.Web.Models.Database
 {
-    public class EshopDbContext : DbContext
+    public class EshopDbContext : IdentityDbContext<User, Role, int>
     {
         public DbSet<CarouselItem> CarouselItems { get; set; }
         public DbSet<ProductItem> ProductItems { get; set; }
@@ -16,6 +18,16 @@ namespace Hudek.Eshop.Web.Models.Database
         public EshopDbContext(DbContextOptions options) : base(options)
         {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            foreach(var entity in modelBuilder.Model.GetEntityTypes())
+            {
+                entity.SetTableName(entity.GetTableName().Replace("AspNet", String.Empty));
+            }
         }
     }
 }
