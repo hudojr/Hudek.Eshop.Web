@@ -1,4 +1,5 @@
 ﻿using Hudek.Eshop.Web.Controllers;
+using Hudek.Eshop.Web.Models.ApplicationServices.Abstraction;
 using Hudek.Eshop.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,17 +12,36 @@ namespace Hudek.Eshop.Web.Areas.Security.Controllers
     [Area("Security")]
     public class AccountController : Controller
     {
+        ISecurityApplicationService security;
+        public AccountController(ISecurityApplicationService security)
+        {
+            this.security = security;
+        }
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Register(RegisterViewModel registerVM)
+        public async Task<IActionResult> Register(RegisterViewModel registerVM)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(HomeController.Index),nameof(HomeController).Replace("Controller", String.Empty), new { area = String.Empty });
+                string[] errors = await security.Register(registerVM, Models.Identity.Roles.Customer);
+                
+                if(errors != null)
+                {
+                    LoginViewModel loginVM = new LoginViewModel()
+                    {
+                        Username = registerVM.Username,
+                        Password = registerVM.Password
+                    };
+                    bool isLogged = await security.Login(loginVM);
+                    if (isLogged)
+                        return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).Replace("Controller", String.Empty), new { area = String.Empty });
+                    else
+                        return RedirectToAction(nameof(Login));
+                }
             }
             return View(registerVM);
         }
@@ -32,13 +52,23 @@ namespace Hudek.Eshop.Web.Areas.Security.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel loginVM)
+        public async Task<IActionResult> Login(LoginViewModel loginVM)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).Replace("Controller", String.Empty), new { area = String.Empty });
+                bool isLogged = await security.Login(loginVM);
+                if (isLogged)
+                    return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).Replace("Controller", String.Empty), new { area = String.Empty });
+
+                loginVM.LoginFailed = true;
             }
             return View(loginVM);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await security.Logout();
+            return RedirectToAction(nameof(Login));
         }
 
     }

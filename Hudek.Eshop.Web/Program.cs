@@ -1,5 +1,7 @@
 using Hudek.Eshop.Web.Models.Database;
+using Hudek.Eshop.Web.Models.Identity;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,22 @@ namespace Hudek.Eshop.Web
                     var dbContext = scope.ServiceProvider.GetRequiredService<EshopDbContext>();
                     DatabaseInit dbInit = new DatabaseInit();
                     dbInit.Initialization(dbContext);
+                    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<Role>>();
+                    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+                    using (Task task = dbInit.EnsureRoleCreated(roleManager))
+                    {
+                        task.Wait();
+                    }
+
+                    using (Task task = dbInit.EnsureAdminCreated(userManager))
+                    {
+                        task.Wait();
+                    }
+
+                    using (Task task = dbInit.EnsureManagerCreated(userManager))
+                    {
+                        task.Wait();
+                    }
                 }
 
             }

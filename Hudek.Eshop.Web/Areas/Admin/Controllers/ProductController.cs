@@ -1,7 +1,9 @@
 ﻿using Hudek.Eshop.Web.Models.Database;
 using Hudek.Eshop.Web.Models.Entity;
+using Hudek.Eshop.Web.Models.Identity;
 using Hudek.Eshop.Web.Models.Implementation;
 using Hudek.Eshop.Web.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 namespace Hudek.Eshop.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = nameof(Roles.Admin) + ", " + nameof(Roles.Manager))]
     public class ProductController : Controller
     {
 
