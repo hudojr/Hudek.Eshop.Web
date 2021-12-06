@@ -60,7 +60,26 @@ namespace Hudek.Eshop.Web
             });
            
             services.AddScoped<ISecurityApplicationService, SecurityIdentityApplicationService>();
-            
+
+
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+
+            services.AddSession(options =>
+
+            {
+
+                // Set a short timeout for easy testing.
+
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+
+                options.Cookie.HttpOnly = true;
+
+                // Make the session cookie essential
+
+                options.Cookie.IsEssential = true;
+
+            });
+
             services.AddControllersWithViews();
         }
 
@@ -78,6 +97,11 @@ namespace Hudek.Eshop.Web
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseSession();
+
+            app.UseRouting();
             app.UseStaticFiles();
 
             app.UseRouting();
