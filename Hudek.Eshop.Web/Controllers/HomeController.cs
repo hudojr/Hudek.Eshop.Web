@@ -25,6 +25,7 @@ namespace Hudek.Eshop.Web.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Načtení Home Index");
             IndexViewModels indexVM = new IndexViewModels();
 
             indexVM.CarouselItems = eshopDbContext.CarouselItems.ToList();

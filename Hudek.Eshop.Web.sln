@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31717.71
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hudek.Eshop.Web", "Hudek.Eshop.Web\Hudek.Eshop.Web.csproj", "{EC3B3ADA-475A-430E-A922-58A64A078AA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hudek.Eshop.Web", "Hudek.Eshop.Web\Hudek.Eshop.Web.csproj", "{EC3B3ADA-475A-430E-A922-58A64A078AA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hudek.Eshop.Tests", "Hudek.Eshop.Tests\Hudek.Eshop.Tests.csproj", "{5D225C12-CC8B-41DC-8562-4E159B30B240}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EC3B3ADA-475A-430E-A922-58A64A078AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC3B3ADA-475A-430E-A922-58A64A078AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC3B3ADA-475A-430E-A922-58A64A078AA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D225C12-CC8B-41DC-8562-4E159B30B240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D225C12-CC8B-41DC-8562-4E159B30B240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D225C12-CC8B-41DC-8562-4E159B30B240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D225C12-CC8B-41DC-8562-4E159B30B240}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
