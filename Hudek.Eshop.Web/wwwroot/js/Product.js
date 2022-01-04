@@ -13,6 +13,7 @@
     });
 }
 
+
 function ChangeTotalPriceInformation(outElementId, locale, totalPrice) {
     $(outElementId).text(parseFloat(totalPrice).toLocaleString(locale,
         {

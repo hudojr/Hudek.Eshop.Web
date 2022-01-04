@@ -1,0 +1,91 @@
+2021-12-27T17:53:22.0829056+01:00  [INF] Entity Framework Core "5.0.12" initialized '"EshopDbContext"' using provider '"Pomelo.EntityFrameworkCore.MySql"' with options: "ServerVersion 8.0.26-mysql " (9958f5bb)
+2021-12-27T17:53:23.2845425+01:00  [INF] Executed DbCommand ("200"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE WHEN COUNT(*) = 0 THEN FALSE ELSE TRUE END
+FROM information_schema.tables
+WHERE table_type = 'BASE TABLE' AND table_schema = 'Hudek.Eshop'" (0723d8ff)
+2021-12-27T17:53:24.0114534+01:00  [INF] Executed DbCommand ("47"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM `CarouselItem` AS `c`" (0723d8ff)
+2021-12-27T17:53:24.1127951+01:00  [INF] User profile is available. Using '"C:\Users\radom\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2021-12-27T17:53:24.4278906+01:00  [INF] Executed DbCommand ("48"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT `r`.`Id`, `r`.`ConcurrencyStamp`, `r`.`Name`, `r`.`NormalizedName`
+FROM `Roles` AS `r`
+WHERE `r`.`NormalizedName` = @__normalizedName_0
+LIMIT 1" (0723d8ff)
+2021-12-27T17:53:24.5677477+01:00  [WRN] Role "(null)" validation failed: "DuplicateRoleName". (60d773c7)
+2021-12-27T17:53:24.5923631+01:00  [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT `r`.`Id`, `r`.`ConcurrencyStamp`, `r`.`Name`, `r`.`NormalizedName`
+FROM `Roles` AS `r`
+WHERE `r`.`NormalizedName` = @__normalizedName_0
+LIMIT 1" (0723d8ff)
+2021-12-27T17:53:24.5953357+01:00  [WRN] Role "(null)" validation failed: "DuplicateRoleName". (60d773c7)
+2021-12-27T17:53:24.6000992+01:00  [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT `r`.`Id`, `r`.`ConcurrencyStamp`, `r`.`Name`, `r`.`NormalizedName`
+FROM `Roles` AS `r`
+WHERE `r`.`NormalizedName` = @__normalizedName_0
+LIMIT 1" (0723d8ff)
+2021-12-27T17:53:24.6034017+01:00  [WRN] Role "(null)" validation failed: "DuplicateRoleName". (60d773c7)
+2021-12-27T17:53:24.6284721+01:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT `u`.`Id`, `u`.`AccessFailedCount`, `u`.`ConcurrencyStamp`, `u`.`Email`, `u`.`EmailConfirmed`, `u`.`FirstName`, `u`.`LastName`, `u`.`LockoutEnabled`, `u`.`LockoutEnd`, `u`.`NormalizedEmail`, `u`.`NormalizedUserName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`PhoneNumberConfirmed`, `u`.`SecurityStamp`, `u`.`TwoFactorEnabled`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1" (0723d8ff)
+2021-12-27T17:53:24.7141127+01:00  [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT `u`.`Id`, `u`.`AccessFailedCount`, `u`.`ConcurrencyStamp`, `u`.`Email`, `u`.`EmailConfirmed`, `u`.`FirstName`, `u`.`LastName`, `u`.`LockoutEnabled`, `u`.`LockoutEnd`, `u`.`NormalizedEmail`, `u`.`NormalizedUserName`, `u`.`PasswordHash`, `u`.`PhoneNumber`, `u`.`PhoneNumberConfirmed`, `u`.`SecurityStamp`, `u`.`TwoFactorEnabled`, `u`.`UserName`
+FROM `Users` AS `u`
+WHERE `u`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1" (0723d8ff)
+2021-12-27T17:53:25.1776797+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-12-27T17:53:25.1804608+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-12-27T17:53:25.1847528+01:00  [INF] Content root path: "C:\Škola\2021-22\ZIMNY 21\AP5PW\Projekt\Hudek.Eshop.Web\Hudek.Eshop.Web" (b5d60022)
+2021-12-27T17:53:25.2590229+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/ - - (ca22a1cb)
+2021-12-27T17:53:25.3850697+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Executing endpoint '"Hudek.Eshop.Web.Controllers.HomeController.Index (Hudek.Eshop.Web)"' (500cc934)
+2021-12-27T17:53:25.4159453+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Home\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "Hudek.Eshop.Web.Controllers.HomeController" ("Hudek.Eshop.Web"). (122b2fdf)
+2021-12-27T17:53:25.4231546+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Načtení Home Index (23a46fd6)
+2021-12-27T17:53:25.4308238+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Entity Framework Core "5.0.12" initialized '"EshopDbContext"' using provider '"Pomelo.EntityFrameworkCore.MySql"' with options: "ServerVersion 8.0.26-mysql " (9958f5bb)
+2021-12-27T17:53:25.4436608+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT `c`.`ID`, `c`.`ImageAlt`, `c`.`ImageSource`
+FROM `CarouselItem` AS `c`" (0723d8ff)
+2021-12-27T17:53:25.4654125+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT `p`.`ID`, `p`.`Description`, `p`.`ImageSource450x300`, `p`.`ImageSource600x700`, `p`.`Name`, `p`.`Price`
+FROM `ProductItem` AS `p`" (0723d8ff)
+2021-12-27T17:53:25.5243194+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2021-12-27T17:53:25.8317186+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 307.3271ms. (f66409e9)
+2021-12-27T17:53:25.8335877+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Executed action "Hudek.Eshop.Web.Controllers.HomeController.Index (Hudek.Eshop.Web)" in 416.3686ms (afa2e885)
+2021-12-27T17:53:25.8347658+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Executed endpoint '"Hudek.Eshop.Web.Controllers.HomeController.Index (Hudek.Eshop.Web)"' (99874f2b)
+2021-12-27T17:53:25.8624948+01:00 8000003e-0001-ff00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/ - - - 200 - text/html;+charset=utf-8 607.6772ms (791a596a)
+2021-12-27T17:53:25.8838678+01:00 80000023-0004-fe00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/lib/bootstrap/dist/css/bootstrap.min.css - - (ca22a1cb)
+2021-12-27T17:53:25.8915294+01:00 8000003c-0002-ff00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/css/shop_homepage.css - - (ca22a1cb)
+2021-12-27T17:53:25.8925644+01:00 80000040-0001-ff00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/css/site.css - - (ca22a1cb)
+2021-12-27T17:53:25.8985557+01:00 80000023-0004-fe00-b63f-84710c7967bb [INF] The file "/lib/bootstrap/dist/css/bootstrap.min.css" was not modified (f1f8d725)
+2021-12-27T17:53:25.8985557+01:00 8000003c-0002-ff00-b63f-84710c7967bb [INF] The file "/css/shop_homepage.css" was not modified (f1f8d725)
+2021-12-27T17:53:25.8991374+01:00 80000040-0001-ff00-b63f-84710c7967bb [INF] The file "/css/site.css" was not modified (f1f8d725)
+2021-12-27T17:53:25.9049189+01:00 8000003c-0002-ff00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/css/shop_homepage.css - - - 304 - text/css 13.3836ms (791a596a)
+2021-12-27T17:53:25.9049317+01:00 80000023-0004-fe00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/lib/bootstrap/dist/css/bootstrap.min.css - - - 304 - text/css 21.0817ms (791a596a)
+2021-12-27T17:53:25.9049227+01:00 80000040-0001-ff00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/css/site.css - - - 304 - text/css 12.3512ms (791a596a)
+2021-12-27T17:53:26.0986235+01:00 80000008-0005-fe00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/img/Carousels/pic1.jpg - - (ca22a1cb)
+2021-12-27T17:53:26.0990786+01:00 80000008-0005-fe00-b63f-84710c7967bb [INF] The file "/img/Carousels/pic1.jpg" was not modified (f1f8d725)
+2021-12-27T17:53:26.0996304+01:00 80000008-0005-fe00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/img/Carousels/pic1.jpg - - - 304 - image/jpeg 0.9121ms (791a596a)
+2021-12-27T17:53:26.1232977+01:00 80000008-0000-fe00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/img/Carousels/pic2.jpg - - (ca22a1cb)
+2021-12-27T17:53:26.1241642+01:00 80000008-0000-fe00-b63f-84710c7967bb [INF] The file "/img/Carousels/pic2.jpg" was not modified (f1f8d725)
+2021-12-27T17:53:26.1245844+01:00 80000008-0000-fe00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/img/Carousels/pic2.jpg - - - 304 - image/jpeg 1.3015ms (791a596a)
+2021-12-27T17:53:26.1461172+01:00 8000000a-0005-fe00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/img/Carousels/pic3.jpg - - (ca22a1cb)
+2021-12-27T17:53:26.1466870+01:00 8000000a-0005-fe00-b63f-84710c7967bb [INF] The file "/img/Carousels/pic3.jpg" was not modified (f1f8d725)
+2021-12-27T17:53:26.1491494+01:00 8000000a-0005-fe00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/img/Carousels/pic3.jpg - - - 304 - image/jpeg 1.2303ms (791a596a)
+2021-12-27T17:53:26.1691747+01:00 8000000a-0000-fe00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/img/Products/absolut-vodka450x300.jpg - - (ca22a1cb)
+2021-12-27T17:53:26.1736222+01:00 8000000e-0003-f900-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/lib/jquery/dist/jquery.min.js - - (ca22a1cb)
+2021-12-27T17:53:26.1741223+01:00 8000000e-0003-f900-b63f-84710c7967bb [INF] The file "/lib/jquery/dist/jquery.min.js" was not modified (f1f8d725)
+2021-12-27T17:53:26.1744960+01:00 8000000e-0003-f900-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/lib/jquery/dist/jquery.min.js - - - 304 - application/javascript 0.8700ms (791a596a)
+2021-12-27T17:53:26.1762340+01:00 8000000a-0000-fe00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/img/Products/absolut-vodka450x300.jpg - - - 404 - - 7.0460ms (791a596a)
+2021-12-27T17:53:26.1780632+01:00 8000003e-0002-ff00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - (ca22a1cb)
+2021-12-27T17:53:26.1785040+01:00 8000003e-0002-ff00-b63f-84710c7967bb [INF] The file "/lib/bootstrap/dist/js/bootstrap.bundle.min.js" was not modified (f1f8d725)
+2021-12-27T17:53:26.1795515+01:00 8000003e-0002-ff00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 304 - application/javascript 0.9425ms (791a596a)
+2021-12-27T17:53:26.1863646+01:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - (ca22a1cb)
+2021-12-27T17:53:26.1867557+01:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] The file "/js/site.js" was not modified (f1f8d725)
+2021-12-27T17:53:26.1871465+01:00 8000000c-0000-fe00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 304 - application/javascript 0.7693ms (791a596a)
+2021-12-27T17:53:26.1921498+01:00 80000040-0002-ff00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/js/Product.js - - (ca22a1cb)
+2021-12-27T17:53:26.1925210+01:00 80000040-0002-ff00-b63f-84710c7967bb [INF] The file "/js/Product.js" was not modified (f1f8d725)
+2021-12-27T17:53:26.1928949+01:00 80000040-0002-ff00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/js/Product.js - - - 304 - application/javascript 0.7452ms (791a596a)
+2021-12-27T17:53:26.2650242+01:00 80000025-0004-fe00-b63f-84710c7967bb [INF] Request starting HTTP/2 GET https://localhost:44346/img/pic1.jpg - - (ca22a1cb)
+2021-12-27T17:53:26.2655390+01:00 80000025-0004-fe00-b63f-84710c7967bb [INF] The file "/img/pic1.jpg" was not modified (f1f8d725)
+2021-12-27T17:53:26.2661621+01:00 80000025-0004-fe00-b63f-84710c7967bb [INF] Request finished HTTP/2 GET https://localhost:44346/img/pic1.jpg - - - 304 - image/jpeg 1.1308ms (791a596a)

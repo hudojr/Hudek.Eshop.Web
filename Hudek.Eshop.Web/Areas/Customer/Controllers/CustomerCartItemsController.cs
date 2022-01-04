@@ -14,22 +14,23 @@ namespace Hudek.Eshop.Web.Areas.Customer.Controllers
 {
     [Area("Customer")]
     [Authorize(Roles = nameof(Roles.Customer))]
-    public class CustomerOrderNotCartController : Controller
+    public class CustomerCartItemsController : Controller
     {
         const string totalPriceString = "TotalPrice";
-        const string orderItemsString = "OrderItems";
+        const string cartItemsString = "CartItems";
 
 
         ISecurityApplicationService iSecure;
         EshopDbContext EshopDbContext;
-        public CustomerOrderNotCartController(ISecurityApplicationService iSecure, EshopDbContext eshopDBContext)
+        public CustomerCartItemsController(ISecurityApplicationService iSecure, EshopDbContext eshopDBContext)
         {
             this.iSecure = iSecure;
             EshopDbContext = eshopDBContext;
         }
 
+
         [HttpPost]
-        public double AddOrderItemsToSession(int? productId)
+        public double AddCartItemsToSession(int? productId)
         {
             double totalPrice = 0;
             if (HttpContext.Session.IsAvailable)
@@ -42,7 +43,7 @@ namespace Hudek.Eshop.Web.Areas.Customer.Controllers
 
             if (product != null)
             {
-                OrderItem orderItem = new OrderItem()
+                CartItem cartItem = new CartItem()
                 {
                     ProductID = product.ID,
                     Product = product,
@@ -53,48 +54,47 @@ namespace Hudek.Eshop.Web.Areas.Customer.Controllers
                 if (HttpContext.Session.IsAvailable)
                 {
 
-                    List<OrderItem> orderItems = HttpContext.Session.GetObject<List<OrderItem>>(orderItemsString);
-                    OrderItem orderItemInSession = null;
-                    if (orderItems != null)
-                        orderItemInSession = orderItems.Find(oi => oi.ProductID == orderItem.ProductID);
+                    List<CartItem> cartItems = HttpContext.Session.GetObject<List<CartItem>>(cartItemsString);
+                    CartItem cartItemInSession = null;
+                    if (cartItems != null)
+                        cartItemInSession = cartItems.Find(oi => oi.ProductID == cartItem.ProductID);
                     else
-                        orderItems = new List<OrderItem>();
+                        cartItems = new List<CartItem>();
 
 
-                    if (orderItemInSession != null)
+                    if (cartItemInSession != null)
                     {
-                        ++orderItemInSession.Amount;
-                        orderItemInSession.Price += orderItem.Product.Price;   //zde pozor na datový typ -> pokud máte Price v obou případech double nebo decimal, tak je to OK. Mě se bohužel povedlo mít to jednou jako decimal a jednou jako double. Nejlepší je datový typ změnit v databázi/třídě, tak to prosím udělejte.
+                        ++cartItemInSession.Amount;
+                        cartItemInSession.Price += cartItem.Product.Price;   //zde pozor na datový typ -> pokud máte Price v obou případech double nebo decimal, tak je to OK. Mě se bohužel povedlo mít to jednou jako decimal a jednou jako double. Nejlepší je datový typ změnit v databázi/třídě, tak to prosím udělejte.
                     }
                     else
                     {
-                        orderItems.Add(orderItem);
+                        cartItems.Add(cartItem);
                     }
 
 
-                    HttpContext.Session.SetObject(orderItemsString, orderItems);
+                    HttpContext.Session.SetObject(cartItemsString, cartItems);
 
-                    totalPrice += orderItem.Product.Price;
+                    totalPrice += cartItem.Product.Price;
                     HttpContext.Session.SetDouble(totalPriceString, totalPrice);
                 }
             }
-
 
             return totalPrice;
         }
 
 
-        public async Task<IActionResult> ApproveOrderInSession()
+        public async Task<IActionResult> SaveCart()
         {
             if (HttpContext.Session.IsAvailable)
             {
 
 
                 double totalPrice = 0;
-                List<OrderItem> orderItems = HttpContext.Session.GetObject<List<OrderItem>>(orderItemsString);
+                List<CartItem> orderItems = HttpContext.Session.GetObject<List<CartItem>>(cartItemsString);
                 if (orderItems != null)
                 {
-                    foreach (OrderItem orderItem in orderItems)
+                    foreach (CartItem orderItem in orderItems)
                     {
                         totalPrice += orderItem.Product.Price * orderItem.Amount;
                         orderItem.Product = null; //zde musime nullovat referenci na produkt, jinak by doslo o pokus jej znovu vlozit do databaze
@@ -103,12 +103,11 @@ namespace Hudek.Eshop.Web.Areas.Customer.Controllers
 
                     User currentUser = await iSecure.GetCurrentUser(User);
 
-                    Order order = new Order()
+                    Cart order = new Cart()
                     {
-                        OrderNumber = Convert.ToBase64String(Guid.NewGuid().ToByteArray()),
+                        CartNumber = currentUser.Id,
                         TotalPrice = totalPrice,
-                        OrderItems = orderItems,
-                        UserId = currentUser.Id
+                        CartItems = orderItems,
                     };
 
 
@@ -119,10 +118,10 @@ namespace Hudek.Eshop.Web.Areas.Customer.Controllers
 
 
 
-                    HttpContext.Session.Remove(orderItemsString);
+                    HttpContext.Session.Remove(cartItemsString);
                     HttpContext.Session.Remove(totalPriceString);
 
-                    return RedirectToAction(nameof(CustomerOrdersController.Index), nameof(CustomerOrdersController).Replace("Controller", ""), new { Area = nameof(Customer) });
+                    return RedirectToAction(nameof(CustomerBagController.Index), nameof(CustomerOrdersController).Replace("Controller", ""), new { Area = nameof(Customer) });
 
                 }
             }

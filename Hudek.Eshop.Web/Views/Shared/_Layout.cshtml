@@ -66,6 +66,7 @@
                             }
                         }
                     </ul>
+ 
                     <ul class="navbar-nav navbar-right">
                         @{
                             double totalPrice = 0;
@@ -74,9 +75,15 @@
                             {
                                 totalPrice = Context.Session.GetDouble(totalPriceString).GetValueOrDefault();
                             }
-                            <li class="navbar-text"><a id="total_price" class="label" style="color:red;">@totalPrice.ToString("C2")</a></li>
+                            <li class="navbar-text dropdown">
+                                <a id="total_price" class="nav-link text-light" asp-area="Customer" asp-controller="CustomerBag" asp-action="Index" style="color: red;">@totalPrice.ToString("C2")</a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li class="nav-item"><a class="nav-link text-light">Bag</a></li>
+                                </ul>
+                            </li>
                         }
                     </ul>
+
                     @{
                         @if (User.Identity.IsAuthenticated == false)
                         {
